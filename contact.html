@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Milkman Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+    }
+    nav {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+    }
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    nav ul li {
+      display: inline;
+      margin: 0 10px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+    }
+    .customer-details {
+      margin-bottom: 20px;
+    }
+    .customer-details table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .customer-details th, .customer-details td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    .customer-details th {
+      background-color: #f2f2f2;
+    }
+    .form-container {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+    }
+    .form-container label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .form-container input[type="text"],
+    .form-container input[type="email"] {
+      width: calc(100% - 22px);
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    .form-container input[type="submit"] {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    @media (max-width: 600px) {
+      .container {
+        margin: 10px;
+        padding: 10px;
+      }
+      .form-container input[type="text"],
+      .form-container input[type="email"] {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#customer-details">Customer Details</a></li>
+      <li><a href="#add-customer">Add Customer</a></li>
+    </ul>
+  </nav>
+  
+  <div class="container">
+    <h1>Milkman Management System</h1>
+    
+    <div id="customer-details" class="customer-details">
+      <h2>Customer Details</h2>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Subscription Plan</th>
+        </tr>
+        <tr>
+          <td>John Doe</td>
+          <td>123 Main St</td>
+          <td>555-1234</td>
+          <td>john@example.com</td>
+          <td>Weekly</td>
+        </tr>
+        <tr>
+            <td>Priya Sinha</td>
+            <td>123 Main St</td>
+            <td>555-1234</td>
+            <td>priya@example.com</td>
+            <td>Weekly</td>
+          </tr>
+          <tr>
+              <td>Ransh Verma</td>
+              <td>123 Main St</td>
+              <td>555-1289</td>
+              <td>ransh@example.com</td>
+              <td>Monthly</td>
+            </tr>
+            <td>Tanuj Saxena</td>
+              <td>123 Main St</td>
+              <td>555-15673</td>
+              <td>tanuj@example.com</td>
+              <td>Daily</td>
+            </tr>
+          <!-- Add more rows for additional customers -->
+       
+        <!-- Add more rows for additional customers -->
+      </table>
+    </div>
+    
+    <div id="add-customer" class="form-container">
+      <h2>Add Customer</h2>
+      <form id="customer-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+        
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="subscription">Subscription Plan:</label>
+        <select id="subscription" name="subscription" required>
+          <option value="Weekly">Weekly</option>
+          <option value="Monthly">Monthly</option>
+          <option value="Quarterly">Quarterly</option>
+        </select>
+        
+        <input type="submit" value="Add Customer">
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("customer-form").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent the form from submitting
+      
+      // Retrieve form data
+      const formData = new FormData(event.target);
+      const customerData = {};
+      formData.forEach((value, key) => {
+        customerData[key] = value;
+      });
+      
+      // Add customer data to the table
+      const table = document.querySelector('.customer-details table');
+      const newRow = table.insertRow(-1);
+      Object.values(customerData).forEach(value => {
+        const cell = newRow.insertCell();
+        cell.textContent = value;
+      });
+      
+      // Clear form fields
+      event.target.reset();
+    });
+  </script>
+</body>
+</html>
+
+
